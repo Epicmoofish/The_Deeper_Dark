@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "oceanicvoid.thedeeperdark.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "thedeeperdark.refmap.json",
+  "mixins": [
+    "RemoveExperimentalSettings"
+  ],
+  "client": [
+    "client.RemoveExperimentalSettingsClient"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
