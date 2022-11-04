@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "gradle",
+			"id": "/Users/rnsug/Documents/Programming/mcmods/The_Deeper_DarkrunClientthedeeperdark",
+			"script": "runClient",
+			"description": "",
+			"group": "forgegradle runs",
+			"project": "thedeeperdark",
+			"buildFile": "/Users/rnsug/Documents/Programming/mcmods/The_Deeper_Dark/build.gradle",
+			"rootProject": "thedeeperdark",
+			"projectFolder": "/Users/rnsug/Documents/Programming/mcmods/The_Deeper_Dark",
+			"workspaceFolder": "/Users/rnsug/Documents/Programming/mcmods/The_Deeper_Dark",
+			"args": "",
+			"javaDebug": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"label": "gradle: runClient"
+		}
+	]
+}
