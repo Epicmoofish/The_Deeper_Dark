@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.portal.PortalShape;
+import oceanicvoid.thedeeperdark.portalHelper.DeeperDarkPortalShape;
 
 import java.util.Optional;
 
@@ -34,8 +35,7 @@ public class GatewayKeyItem extends Item {
         BlockState blockstate = level.getBlockState(blockpos);
        BlockPos blockpos1 = blockpos.relative(useOnContext.getClickedFace());
         if (BaseFireBlock.canBePlacedAt(level, blockpos1, useOnContext.getHorizontalDirection())) {
-            Optional<PortalShape> optional = PortalShape.findEmptyPortalShape(level, blockpos1, Direction.Axis.X);
-            optional = net.minecraftforge.event.ForgeEventFactory.onTrySpawnPortal(level, blockpos1, optional);
+            Optional<DeeperDarkPortalShape> optional = DeeperDarkPortalShape.findEmptyPortalShape(level, blockpos1, Direction.Axis.X);
             if (optional.isPresent()) {
                 optional.get().createPortalBlocks();
                 level.playSound(player, blockpos1, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
