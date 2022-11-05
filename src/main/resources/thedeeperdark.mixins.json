@@ -8,7 +8,7 @@
     "RemoveExperimentalSettings"
   ],
   "client": [
-    "RemoveExperimentalSettingsWorldLoad",
+    "client.RemoveExperimentalSettingsWorldLoad",
     "client.RemoveExperimentalSettingsClient"
   ],
   "injectors": {

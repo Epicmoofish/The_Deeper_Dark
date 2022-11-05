@@ -1,4 +1,4 @@
-package oceanicvoid.thedeeperdark.mixin;
+package oceanicvoid.thedeeperdark.mixin.client;
 
 import com.mojang.serialization.Lifecycle;
 import net.minecraft.client.Minecraft;
