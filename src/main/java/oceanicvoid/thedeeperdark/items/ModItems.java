@@ -10,4 +10,6 @@ public class ModItems {
 			"entrenched_journal", 
 			() -> new Item(new Item.Properties())
 		);
+	//this function is very important because if it is not run, no items will be registered, dont remove the init function
+	public static void init(){}
 }

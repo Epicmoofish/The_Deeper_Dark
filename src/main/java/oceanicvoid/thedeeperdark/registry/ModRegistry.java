@@ -17,7 +17,7 @@ public class ModRegistry {
 		DeferredRegister.create(ForgeRegistries.ITEMS, TheDeeperDark.MODID);
 /* -------------------------------------------------------------------------- */
 	public static void register(IEventBus eventBus) {
-
+		ModItems.init();
 		ITEMS.register(eventBus);
 
 		// BLOCKS.register(eventBus);
