@@ -9,7 +9,7 @@
       "ore_veins_enabled": true,
       "legacy_random_source": false,
       "default_block": {
-        "Name": "minecraft:sculk"
+        "Name": "minecraft:deepslate"
       },
       "default_fluid": {
         "Name": "minecraft:water",
@@ -49,8 +49,8 @@
               },
               "argument2": {
                 "type": "minecraft:y_clamped_gradient",
-                "from_y": 250,
-                "to_y": 384,
+                "from_y": 275,
+                "to_y": 320,
                 "from_value": 0,
                 "to_value": 1
               }
@@ -93,13 +93,60 @@
                 "Name": "minecraft:bedrock"
               }
             }
+          },
+          {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:not",
+              "invert": {
+                "type": "minecraft:vertical_gradient",
+                "random_name": "minecraft:bedrock_roof",
+                "true_at_and_below": {
+                  "below_top": 5
+                },
+                "false_at_and_above": {
+                  "below_top": 0
+                }
+              }
+            },
+            "then_run": {
+              "type": "minecraft:block",
+              "result_state": {
+                "Name": "minecraft:bedrock"
+              }
+            }
+          },
+          {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:biome",
+              "biome_is": [
+                "thedeeperdark:shaken_caverns"
+              ]
+            },
+            "then_run": {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "minecraft:stone_depth",
+                "offset": 0,
+                "surface_type": "floor",
+                "add_surface_depth": false,
+                "secondary_depth_range": 5
+              },
+              "then_run": {
+                "type": "minecraft:block",
+                "result_state": {
+                  "Name": "minecraft:sculk"
+                }
+              }
+            }
           }
         ]
       }
     },
     "biome_source": {
       "type": "minecraft:fixed",
-      "biome": "minecraft:deep_dark"
+      "biome": "thedeeperdark:shaken_caverns"
     }
   }
 }
