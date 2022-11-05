@@ -1,5 +1,9 @@
 {
   "item.thedeeperdark.entrenched_journal": "Entrenched Journal",
   "item.thedeeperdark.entrenched_journal.tooltip": "A worn, stained, and buried traveler's logbook that was never intended to be seen again.",
-  "item.thedeeperdark.entrenched_journal.status": "\nThis holds all of the deepest dark's secrets inside."
+  "item.thedeeperdark.entrenched_journal.status": "\nThis holds all of the deepest dark's secrets inside.",
+  "item.thedeeperdark.gateway_key": "Gateway Key",
+  "item.thedeeperdark.gateway_key.tooltip": "A worn, stained, and buried traveler's cock that was never intended to be sucked again.",
+  "item.thedeeperdark.gateway_key.status": "\nThis holds all the cum."
+
 }

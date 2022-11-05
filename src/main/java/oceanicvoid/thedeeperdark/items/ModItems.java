@@ -14,7 +14,7 @@ public class ModItems {
 		);
 	public static final RegistryObject<Item> GATEWAY_KEY =
 			ModRegistry.ITEMS.register(
-					"gateway_key",
+					GatewayKeyItem.ID,
 					() -> new GatewayKeyItem(new Item.Properties().tab(CreativeModeTab.TAB_TOOLS))
 			);
 	//this function is very important because if it is not run, no items will be registered, dont remove the init function

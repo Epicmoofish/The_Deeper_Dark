@@ -1,6 +1,7 @@
 package oceanicvoid.thedeeperdark.items.general;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,6 +19,10 @@ import java.util.List;
 public class LoreItem {
 
 	// append the lore from the lang file when requested
+	public static void addLore(Item item, List<Component> tooltip) {
+		String itemId = Registry.ITEM.getKey(item).getPath();
+		addLore(itemId, tooltip);
+	}
 	public static void addLore(String itemId, List<Component> tooltip) {
 		// Story-esque lore
 		tooltip.add(
