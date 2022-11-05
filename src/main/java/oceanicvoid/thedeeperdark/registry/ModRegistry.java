@@ -6,6 +6,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import oceanicvoid.thedeeperdark.TheDeeperDark;
+import oceanicvoid.thedeeperdark.blocks.ModBlocks;
 import oceanicvoid.thedeeperdark.items.ModItems;
 
 public class ModRegistry {
@@ -17,10 +18,11 @@ public class ModRegistry {
 		DeferredRegister.create(ForgeRegistries.ITEMS, TheDeeperDark.MODID);
 /* -------------------------------------------------------------------------- */
 	public static void register(IEventBus eventBus) {
+		ModBlocks.init();
+		BLOCKS.register(eventBus);
+
 		ModItems.init();
 		ITEMS.register(eventBus);
-
-		// BLOCKS.register(eventBus);
 	}
 /* -------------------------------------------------------------------------- */
 }

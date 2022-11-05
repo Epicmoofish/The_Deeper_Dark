@@ -20,13 +20,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.phys.Vec3;
+import oceanicvoid.thedeeperdark.blocks.ModBlocks;
 
 public class DeeperDarkPortalShape {
-    private static final int MIN_WIDTH = 20;
-    public static final int MAX_WIDTH = 20;
-    private static final int MIN_HEIGHT = 6;
-    public static final int MAX_HEIGHT = 6;
-    public static final Block PORTAL_BLOCK = Blocks.COAL_BLOCK;
+    private static final int WIDTH = 20;
+    private static final int HEIGHT = 6;
+    public static final Block PORTAL_BLOCK = ModBlocks.DEEPER_DARK_PORTAL.get();
+    public static final Block OUTSIDE_PORTAL_BLOCK = ModBlocks.ACTIVATED_DEEPSLATE.get();
     private static final BlockBehaviour.StatePredicate FRAME = (state, getter, pos) -> {
         return state.getBlock().equals(Blocks.REINFORCED_DEEPSLATE);
     };
@@ -160,17 +160,22 @@ public class DeeperDarkPortalShape {
     }
 
     public boolean isValid() {
-        return this.bottomLeft != null && this.width >= 2 && this.width <= 21 && this.height >= 3 && this.height <= 21;
+        return this.bottomLeft != null && this.width == WIDTH && this.height == HEIGHT;
     }
 
     public void createPortalBlocks() {
-        BlockState blockstate = PORTAL_BLOCK.defaultBlockState();
-//        BlockState blockstate = PORTAL_BLOCK.defaultBlockState().setValue(NetherPortalBlock.AXIS, this.axis);
-        BlockPos.betweenClosed(this.bottomLeft, this.bottomLeft.relative(Direction.UP, this.height - 1).relative(this.rightDir, this.width - 1)).forEach((p_77725_) -> {
-            this.level.setBlock(p_77725_, blockstate, 18);
+        BlockState blockstate = PORTAL_BLOCK.defaultBlockState().setValue(NetherPortalBlock.AXIS, this.axis);
+        BlockState outsidestate = OUTSIDE_PORTAL_BLOCK.defaultBlockState();
+        BlockPos bottLeft = this.bottomLeft.relative(this.rightDir, -1).relative(Direction.UP, -1);
+        BlockPos topRight = this.bottomLeft.relative(Direction.UP, this.height).relative(this.rightDir, this.width);
+        BlockPos.betweenClosed(bottLeft, topRight).forEach((pos) -> {
+            if (((pos.getX() == bottLeft.getX() || pos.getX() == topRight.getX()) && (pos.getZ() == bottLeft.getZ() || pos.getZ() == topRight.getZ())) || pos.getY() == bottLeft.getY() || pos.getY() == topRight.getY()) {
+                this.level.setBlock(pos, outsidestate, 18);
+            } else {
+                this.level.setBlock(pos, blockstate, 18);
+            }
         });
     }
-
     public boolean isComplete() {
         return this.isValid() && this.numPortalBlocks == this.width * this.height;
     }
