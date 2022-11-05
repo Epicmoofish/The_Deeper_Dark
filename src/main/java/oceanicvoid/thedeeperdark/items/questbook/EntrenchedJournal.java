@@ -47,8 +47,8 @@ public class EntrenchedJournal extends Item {
 			// the client opens the gui for the player
 			if (level.isClientSide()) {
 				Minecraft.getInstance().setScreen(new EntrenchedJournalScreen());
+				return InteractionResultHolder.pass(player.getItemInHand(interactionHand));
 			}
-			return InteractionResultHolder.pass(player.getItemInHand(interactionHand));
 		}
 		return InteractionResultHolder.fail(player.getItemInHand(interactionHand));
 	}
