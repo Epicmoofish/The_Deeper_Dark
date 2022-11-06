@@ -34,6 +34,5 @@ public class GameRendererMixin {
             float f3 = -((float)gameRenderer.tick + p_109090_) * (float)i;
             posestack.mulPose(vector3f.rotationDegrees(f3));
         }
-        System.out.println("hey");
     }
 }
