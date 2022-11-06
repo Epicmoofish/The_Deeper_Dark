@@ -7,6 +7,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import oceanicvoid.thedeeperdark.TheDeeperDark;
 import oceanicvoid.thedeeperdark.blocks.ModBlocks;
+import oceanicvoid.thedeeperdark.dimensions.ModDimensions;
+import oceanicvoid.thedeeperdark.dimensions.ModPOIs;
 import oceanicvoid.thedeeperdark.items.ModItems;
 
 public class ModRegistry {
@@ -23,6 +25,10 @@ public class ModRegistry {
 
 		ModItems.init();
 		ITEMS.register(eventBus);
+
+		ModDimensions.register();
+
+		ModPOIs.register(eventBus);
 	}
 /* -------------------------------------------------------------------------- */
 }

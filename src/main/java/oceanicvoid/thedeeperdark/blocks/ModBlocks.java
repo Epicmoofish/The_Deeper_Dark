@@ -27,7 +27,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> DEEPER_DARK_PORTAL =
             registerBlockNoItem(
                     "deeper_dark_portal",
-                    () -> new NetherPortalBlock(BlockBehaviour.Properties.of(Material.PORTAL).noCollission().randomTicks().strength(-1.0F,3600000.0F).sound(SoundType.GLASS).lightLevel((p_50870_) -> {
+                    () -> new DeeperDarkPortalBlock(BlockBehaviour.Properties.of(Material.PORTAL).noCollission().randomTicks().strength(-1.0F,3600000.0F).sound(SoundType.GLASS).lightLevel((p_50870_) -> {
                         return 11;
                     }))
             );
