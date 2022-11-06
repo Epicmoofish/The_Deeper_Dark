@@ -1,6 +1,10 @@
 package oceanicvoid.thedeeperdark.mixininterfaces;
 
 public interface IEntityMixin {
-    public void setInDeeperDarkPortal(boolean inPortal);
-    public boolean getInDeeperDarkPortal();
+    void setInDeeperDarkPortal(boolean inPortal);
+    boolean getInDeeperDarkPortal();
+    void setDeeperDarkPortalTime(float portalTime);
+    float getDeeperDarkPortalTime();
+    void setoDeeperDarkPortalTime(float oportalTime);
+    float getoDeeperDarkPortalTime();
 }

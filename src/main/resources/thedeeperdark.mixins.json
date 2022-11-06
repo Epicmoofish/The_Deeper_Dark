@@ -2,16 +2,18 @@
   "required": true,
   "minVersion": "0.8",
   "package": "oceanicvoid.thedeeperdark.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "refmap": "thedeeperdark.refmap.json",
   "mixins": [
-    "RemoveExperimentalSettings",
-    "EntityMixin"
+    "EntityMixin",
+    "RemoveExperimentalSettings"
   ],
   "client": [
-    "client.RemoveExperimentalSettingsWorldLoad",
+    "client.GameRendererMixin",
+    "client.GuiMixin",
+    "client.LocalPlayerMixin",
     "client.RemoveExperimentalSettingsClient",
-    "client.LocalPlayerMixin"
+    "client.RemoveExperimentalSettingsWorldLoad"
   ],
   "injectors": {
     "defaultRequire": 1

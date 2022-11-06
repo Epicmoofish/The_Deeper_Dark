@@ -19,8 +19,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class LocalPlayerMixin {
     @Inject(method = "handleNetherPortalClient()V",at=@At("HEAD"))
     private void injectedPortalWoosh(CallbackInfo ci){
-        if (((IEntityMixin)(Entity)(LocalPlayer)(Object)(this)).getInDeeperDarkPortal()) {
-            LocalPlayer player = (LocalPlayer)(Object)(this);
+        IEntityMixin entityMixin = ((IEntityMixin)(Entity)(LocalPlayer)(Object)(this));
+        LocalPlayer player = (LocalPlayer)(Object)(this);
+        entityMixin.setoDeeperDarkPortalTime(entityMixin.getDeeperDarkPortalTime());
+        if (entityMixin.getInDeeperDarkPortal()) {
             if (player.minecraft.screen != null && !player.minecraft.screen.isPauseScreen() && !(player.minecraft.screen instanceof DeathScreen) && !(player.minecraft.screen instanceof ReceivingLevelScreen)) {
                 if (player.minecraft.screen instanceof AbstractContainerScreen) {
                     player.closeContainer();
@@ -29,18 +31,27 @@ public class LocalPlayerMixin {
                 player.minecraft.setScreen((Screen)null);
             }
 
-            if (player.portalTime == 0.0F) {
+            if (entityMixin.getDeeperDarkPortalTime() == 0.0F) {
                 player.minecraft.getSoundManager().play(SimpleSoundInstance.forLocalAmbience(SoundEvents.PORTAL_TRIGGER, player.getRandom().nextFloat() * 0.4F + 0.8F, 0.25F));
             }
-            float counterAct=0.05F;
-            if (player.hasEffect(MobEffects.CONFUSION) && player.getEffect(MobEffects.CONFUSION).getDuration() > 60) {
-                counterAct=-0.006666667F;
-            }
-            player.portalTime += 0.0125F+counterAct;
-            if (player.portalTime >= 1.0F) {
-                player.portalTime = 1.0F;
+            entityMixin.setDeeperDarkPortalTime(entityMixin.getDeeperDarkPortalTime() + 0.0125F);
+            if (entityMixin.getDeeperDarkPortalTime() >= 1.0F) {
+                entityMixin.setDeeperDarkPortalTime(1.0F);
             }
             ((IEntityMixin)(Entity)(LocalPlayer)(Object)(this)).setInDeeperDarkPortal(false);
+        } else if (player.hasEffect(MobEffects.CONFUSION) && player.getEffect(MobEffects.CONFUSION).getDuration() > 60) {
+            entityMixin.setDeeperDarkPortalTime(entityMixin.getDeeperDarkPortalTime()+0.006666667F);
+            if (entityMixin.getDeeperDarkPortalTime() > 1.0F) {
+                entityMixin.setDeeperDarkPortalTime(1.0F);
+            }
+        } else {
+            if (entityMixin.getDeeperDarkPortalTime() > 0.0F) {
+                entityMixin.setDeeperDarkPortalTime(entityMixin.getDeeperDarkPortalTime()-0.05F);
+            }
+
+            if (entityMixin.getDeeperDarkPortalTime() < 0.0F) {
+                entityMixin.setDeeperDarkPortalTime(0.0F);
+            }
         }
     }
 }

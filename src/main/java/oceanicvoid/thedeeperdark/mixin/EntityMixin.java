@@ -11,6 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Entity.class)
 public class EntityMixin implements IEntityMixin {
     public boolean inDeeperDarkPortal = false;
+    public float deeperDarkPortalTime = 0.0f;
+    public float odeeperDarkPortalTime = 0.0f;
     @Override
     public void setInDeeperDarkPortal(boolean inPortal) {
         inDeeperDarkPortal = inPortal;
@@ -19,6 +21,25 @@ public class EntityMixin implements IEntityMixin {
     @Override
     public boolean getInDeeperDarkPortal() {
         return inDeeperDarkPortal;
+    }
+
+    @Override
+    public void setDeeperDarkPortalTime(float portalTime) {
+        deeperDarkPortalTime = portalTime;
+    }
+
+    @Override
+    public float getDeeperDarkPortalTime() {
+        return deeperDarkPortalTime;
+    }
+    @Override
+    public void setoDeeperDarkPortalTime(float oportalTime) {
+        odeeperDarkPortalTime = oportalTime;
+    }
+
+    @Override
+    public float getoDeeperDarkPortalTime() {
+        return odeeperDarkPortalTime;
     }
 
     @Inject(method= "handleNetherPortal()V",at = @At(value="HEAD"))
