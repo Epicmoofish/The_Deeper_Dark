@@ -1,10 +1,12 @@
 {
   "item.thedeeperdark.entrenched_journal": "Entrenched Journal",
-  "item.thedeeperdark.entrenched_journal.tooltip": "A worn, stained, and buried traveler's logbook that was never intended to be seen again.",
+  "item.thedeeperdark.entrenched_journal.tooltip": "A worn, stained, and buried logbook that contains erratic findings, from an anxious traveler who never wanted anyone to discover them again.",
   "item.thedeeperdark.entrenched_journal.status": "This holds all of the deepest dark's secrets inside.",
+
   "item.thedeeperdark.gateway_key": "Gateway Key",
-  "item.thedeeperdark.gateway_key.tooltip": "Unfinished",
+  "item.thedeeperdark.gateway_key.tooltip": "This key was too dangerous to be seen thrown in the ocean, and instead was stashed to where it should have never left. It fits perfectly into the keyhole of the Ancient City's central statue.",
   "item.thedeeperdark.gateway_key.status": "This opens the gateway to the darkest depths.",
+
   "block.thedeeperdark.activated_deepslate": "Activated Deepslate",
   "block.thedeeperdark.deeper_dark_portal": "Deeper Dark Portal"
 
