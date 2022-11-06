@@ -30,6 +30,8 @@ public class LoreItem {
 						"item.%s.%s.tooltip".formatted(TheDeeperDark.MODID, itemId)
 				).withStyle(ChatFormatting.GRAY)
 		);
+		//blank space
+		tooltip.add(Component.literal(" "));
 		// status (orange) lore
 		tooltip.add(
 				Component.translatable(

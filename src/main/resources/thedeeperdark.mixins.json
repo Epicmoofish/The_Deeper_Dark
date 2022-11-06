@@ -5,11 +5,13 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "thedeeperdark.refmap.json",
   "mixins": [
-    "RemoveExperimentalSettings"
+    "RemoveExperimentalSettings",
+    "EntityMixin"
   ],
   "client": [
     "client.RemoveExperimentalSettingsWorldLoad",
-    "client.RemoveExperimentalSettingsClient"
+    "client.RemoveExperimentalSettingsClient",
+    "client.LocalPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

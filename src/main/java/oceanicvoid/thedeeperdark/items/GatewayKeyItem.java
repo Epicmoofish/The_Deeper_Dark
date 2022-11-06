@@ -34,6 +34,7 @@ public class GatewayKeyItem extends Item {
         super(addProperties(properties));
     }
     private static Properties addProperties(Properties properties) {
+        properties.stacksTo(1);
         properties.rarity(Rarity.EPIC);
         properties.tab(CreativeModeTab.TAB_TOOLS);
         return properties;
