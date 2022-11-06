@@ -35,22 +35,8 @@ public class EntrenchedJournalScreen extends Screen {
 //		renderBook(poseStack);
 
 		int guiScale = Minecraft.getInstance().options.guiScale().get();
-		int xCorner = getCornerPosition(this.width, BOOK_IMAGE_WIDTH);
-		int yCorner = getCornerPosition(this.height, BOOK_IMAGE_HEIGHT);
 
-		RenderSystem.setShader(GameRenderer::getPositionColorShader);
-		RenderSystem.setShaderColor(1,1,1,1);
-		// hex color format is ARGB, with 2 hex digits indicating each
-		final int rectOffsetMagicNumber = 4;
-		Screen.fill(
-			poseStack,
-			xCorner+rectOffsetMagicNumber,
-			yCorner+rectOffsetMagicNumber,
-			this.width-xCorner-rectOffsetMagicNumber,
-			this.height-yCorner-rectOffsetMagicNumber,
-			0xDF444444
-		);
-
+		renderQuestBackground(poseStack);
 		renderBookOutline(poseStack);
 	}
 
@@ -59,6 +45,25 @@ public class EntrenchedJournalScreen extends Screen {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, BOOK_OUTLINE_LOCATION);
 		renderBookAlike(poseStack);
+	}
+
+	private void renderQuestBackground(PoseStack poseStack) {
+		RenderSystem.setShader(GameRenderer::getPositionColorShader);
+		RenderSystem.setShaderColor(1,1,1,1);
+
+		int xCorner = getCornerPosition(this.width, BOOK_IMAGE_WIDTH);
+		int yCorner = getCornerPosition(this.height, BOOK_IMAGE_HEIGHT);
+		final int rectOffsetMagicNumber = 4;
+
+		// hex color format is ARGB, with 2 hex digits indicating each
+		Screen.fill(
+				poseStack,
+				xCorner+rectOffsetMagicNumber,
+				yCorner+rectOffsetMagicNumber,
+				this.width-xCorner-rectOffsetMagicNumber,
+				this.height-yCorner-rectOffsetMagicNumber,
+				0xDF444444
+		);
 	}
 
 	private void renderBook(PoseStack poseStack) {
