@@ -1,0 +1,18 @@
+{
+  "quest_name": "Gateway to a darker world",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "thedeeperdark:gateway_key"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    }
+  }
+}

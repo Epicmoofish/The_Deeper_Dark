@@ -1,0 +1,18 @@
+{
+  "quest_name": "The discovery of findings",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "thedeeperdark:entrenched_journal"
+            ],
+            "count": 1
+          }
+        ]
+      }
+    }
+  }
+}
