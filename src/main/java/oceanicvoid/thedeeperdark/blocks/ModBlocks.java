@@ -21,7 +21,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> ACTIVATED_DEEPSLATE =
             registerBlock(
                     "activated_deepslate",
-                    () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(-1.0F, 3600000.0F).noLootTable()),
+                    () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(-1.0F, 3600000.0F).noLootTable().lightLevel(state -> 15)),
                     CreativeModeTab.TAB_BUILDING_BLOCKS
             );
     public static final RegistryObject<Block> DEEPER_DARK_PORTAL =

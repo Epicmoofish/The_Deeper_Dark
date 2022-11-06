@@ -53,7 +53,7 @@ public class EntrenchedJournal extends Item {
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag tooltipFlag) {
-		LoreItem.addLore(ID, tooltip);
+		LoreItem.addLore(this, tooltip);
 	}
 
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "thedeeperdark:block/activated_deepslate_bottom",
+    "side": "thedeeperdark:block/activated_deepslate_side",
+    "top": "thedeeperdark:block/activated_deepslate_top"
+  }
+}
