@@ -19,6 +19,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -31,11 +32,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import oceanicvoid.thedeeperdark.dimensions.ModDimensions;
 import oceanicvoid.thedeeperdark.dimensions.teleporter.DeeperDarkTeleporter;
+import oceanicvoid.thedeeperdark.mixin.EntityMixin;
+import oceanicvoid.thedeeperdark.mixininterfaces.IEntityMixin;
 
 public class DeeperDarkPortalBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
@@ -48,6 +52,10 @@ public class DeeperDarkPortalBlock extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(AXIS, Direction.Axis.X));
     }
 
+    @Override
+    public boolean canBeReplaced(BlockState p_60470_, Fluid p_60471_) {
+        return false;
+    }
     public VoxelShape getShape(BlockState p_54942_, BlockGetter p_54943_, BlockPos p_54944_, CollisionContext p_54945_) {
         switch ((Direction.Axis)p_54942_.getValue(AXIS)) {
             case Z:
@@ -76,10 +84,12 @@ public class DeeperDarkPortalBlock extends Block {
     @Override
     public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entity) {
         if(!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
+            ((IEntityMixin) entity).setInDeeperDarkPortal(true);
             if(entity.isOnPortalCooldown()) {
                 entity.setPortalCooldown();
             }
             else {
+                int i = entity.getPortalWaitTime();
                 if(!entity.level.isClientSide && !pos.equals(entity.portalEntrancePos)) {
                     entity.portalEntrancePos = pos.immutable();
                 }
@@ -90,7 +100,7 @@ public class DeeperDarkPortalBlock extends Block {
                             ? Level.OVERWORLD : ModDimensions.THEDEEPERDARK_KEY;
                     if(minecraftserver != null) {
                         ServerLevel destinationWorld = minecraftserver.getLevel(destination);
-                        if(destinationWorld != null && minecraftserver.isNetherEnabled() && !entity.isPassenger()) {
+                        if(destinationWorld != null && minecraftserver.isNetherEnabled() && !entity.isPassenger() && entity.portalTime >= i) {
                             entity.level.getProfiler().push("the_deeper_dark_portal");
                             entity.setPortalCooldown();
                             entity.changeDimension(destinationWorld, new DeeperDarkTeleporter(destinationWorld));
