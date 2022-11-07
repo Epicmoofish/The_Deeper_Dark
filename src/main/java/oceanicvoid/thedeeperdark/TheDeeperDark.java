@@ -29,6 +29,7 @@ public class TheDeeperDark {
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(QuestHandler.class);
+        MinecraftForge.EVENT_BUS.register(ModRegistry.ClientRegistry.class);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

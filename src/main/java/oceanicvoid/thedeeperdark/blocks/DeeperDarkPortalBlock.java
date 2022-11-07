@@ -40,6 +40,7 @@ import oceanicvoid.thedeeperdark.dimensions.ModDimensions;
 import oceanicvoid.thedeeperdark.dimensions.teleporter.DeeperDarkTeleporter;
 import oceanicvoid.thedeeperdark.mixin.EntityMixin;
 import oceanicvoid.thedeeperdark.mixininterfaces.IEntityMixin;
+import oceanicvoid.thedeeperdark.particles.ModParticles;
 
 public class DeeperDarkPortalBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
@@ -133,8 +134,7 @@ public class DeeperDarkPortalBlock extends Block {
                 d2 = (double)p_221796_.getZ() + 0.5D + 0.25D * (double)j;
                 d5 = (double)(p_221797_.nextFloat() * 2.0F * (float)j);
             }
-            //TODO: add custom particle
-            p_221795_.addParticle(ParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
+            p_221795_.addParticle(ModParticles.DEEPER_DARK_PORTAL.get(), d0, d1, d2, d3, d4, d5);
         }
 
     }
