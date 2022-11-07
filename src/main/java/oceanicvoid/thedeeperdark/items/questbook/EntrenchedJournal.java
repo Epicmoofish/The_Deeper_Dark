@@ -59,9 +59,6 @@ public class EntrenchedJournal extends Item {
 				Minecraft.getInstance().setScreen(new EntrenchedJournalScreen());
 				return InteractionResultHolder.pass(player.getItemInHand(interactionHand));
 			}
-			else {
-				QuestHandler.getQuestName("quest_obtain_journal");
-			}
 		}
 		return InteractionResultHolder.fail(player.getItemInHand(interactionHand));
 	}

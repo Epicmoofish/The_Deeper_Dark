@@ -30,18 +30,17 @@ public class QuestHandler {
 	public static ResourceLocation getQuestDisplay(String questid) {
 		return new ResourceLocation(TheDeeperDark.MODID, "advancements/" + questid + ".json");
 	}
-
-	// change to return string
-	public static void getQuestName(String questid) {
+	
+	public static String getQuestName(String questid) {
 		ResourceLocation advLoc = getQuestDisplay(questid);
+		String data = "None";
 		try {
 			InputStream jsonData = questResourceMap.get(advLoc).open();
 			JsonElement parsed = JsonParser.parseReader(new InputStreamReader(jsonData));
-			String data = parsed.getAsJsonObject().get("quest_name").getAsString();
-			System.out.println(data);
-
+			data = parsed.getAsJsonObject().get("quest_name").getAsString();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+		return data;
 	}
 }
