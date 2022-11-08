@@ -8,7 +8,16 @@
 		"water_color": 3556190,
 		"water_fog_color": 329011
 	},
-	"spawners": {},
+	"spawners": {
+		"monster": [
+			{
+				"type": "minecraft:warden",
+				"weight": 10,
+				"minCount": 1,
+				"maxCount": 1
+			}
+		]
+	},
 	"spawn_costs": {},
 	"carvers": {},
 	"features": [
