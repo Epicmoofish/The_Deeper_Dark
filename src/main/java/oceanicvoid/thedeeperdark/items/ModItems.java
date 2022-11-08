@@ -19,6 +19,9 @@ public class ModItems {
 	public static final RegistryObject<Item> GATEWAY_KEY = ModRegistry.ITEMS.register(
 			GatewayKeyItem.ID,
 			() -> new GatewayKeyItem(new Item.Properties()));
+	public static final RegistryObject<Item> SONIC_BOMB = ModRegistry.ITEMS.register(
+			SonicBombItem.ID,
+			() -> new SonicBombItem(new Item.Properties()));
 	//this function is very important because if it is not run, no items will be registered, dont remove the init function
 	public static void init() {}
 }

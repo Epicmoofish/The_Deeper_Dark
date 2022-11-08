@@ -11,6 +11,7 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import oceanicvoid.thedeeperdark.registry.ModRegistry;
 import oceanicvoid.thedeeperdark.systems.quests.QuestHandler;
+import oceanicvoid.thedeeperdark.vibrations.ModVibrations;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -33,7 +34,7 @@ public class TheDeeperDark {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        
+        ModVibrations.addVibrationsToSculkSensor();
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
