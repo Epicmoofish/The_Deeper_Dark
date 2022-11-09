@@ -22,7 +22,7 @@ public class SonicBombItem extends Item {
     }
     @Override
     public InteractionResultHolder<ItemStack> use(Level p_41432_, Player p_41433_, InteractionHand p_41434_) {
-        p_41432_.gameEvent(p_41433_, ModVibrations.sonicBombVibration.get(), p_41433_.position());
+        p_41432_.gameEvent(null, ModVibrations.sonicBombVibration.get(), p_41433_.position());
         return super.use(p_41432_, p_41433_, p_41434_);
     }
 }
