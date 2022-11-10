@@ -2,6 +2,7 @@ package oceanicvoid.thedeeperdark.registry;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -10,12 +11,14 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import oceanicvoid.thedeeperdark.TheDeeperDark;
 import oceanicvoid.thedeeperdark.blocks.ModBlocks;
 import oceanicvoid.thedeeperdark.dimensions.ModDimensions;
 import oceanicvoid.thedeeperdark.dimensions.ModPOIs;
+import oceanicvoid.thedeeperdark.entities.ModEntities;
 import oceanicvoid.thedeeperdark.items.ModItems;
 import oceanicvoid.thedeeperdark.particles.ModParticles;
 import oceanicvoid.thedeeperdark.vibrations.ModVibrations;
@@ -29,6 +32,8 @@ public class ModRegistry {
 		DeferredRegister.create(ForgeRegistries.ITEMS, TheDeeperDark.MODID);
 	public static final DeferredRegister<GameEvent> GAME_EVENTS =
 			DeferredRegister.create(Registry.GAME_EVENT_REGISTRY, TheDeeperDark.MODID);
+	public static final DeferredRegister<EntityType<?>> ENTITIES =
+			DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, TheDeeperDark.MODID);
 	public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, TheDeeperDark.MODID);
 /* -------------------------------------------------------------------------- */
 	public static void register(IEventBus eventBus) {
@@ -47,6 +52,9 @@ public class ModRegistry {
 
 		ModVibrations.init();
 		GAME_EVENTS.register(eventBus);
+
+		ModEntities.init();
+		ENTITIES.register(eventBus);
 	}
 	@Mod.EventBusSubscriber(modid=TheDeeperDark.MODID, value=Dist.CLIENT, bus=Mod.EventBusSubscriber.Bus.MOD)
 	public static class ClientRegistry {

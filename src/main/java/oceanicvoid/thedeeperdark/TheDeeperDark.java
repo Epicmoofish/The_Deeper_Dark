@@ -9,6 +9,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import oceanicvoid.thedeeperdark.entities.ModEntities;
 import oceanicvoid.thedeeperdark.registry.ModRegistry;
 import oceanicvoid.thedeeperdark.systems.quests.QuestHandler;
 import oceanicvoid.thedeeperdark.vibrations.ModVibrations;
@@ -49,7 +50,7 @@ public class TheDeeperDark {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            
+            ModEntities.registerRenderers();
         }
     }
 }

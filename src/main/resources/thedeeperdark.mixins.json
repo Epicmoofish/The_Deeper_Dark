@@ -6,7 +6,8 @@
   "refmap": "thedeeperdark.refmap.json",
   "mixins": [
     "EntityMixin",
-    "RemoveExperimentalSettings"
+    "RemoveExperimentalSettings",
+    "WardenMixin"
   ],
   "client": [
     "client.GameRendererMixin",
