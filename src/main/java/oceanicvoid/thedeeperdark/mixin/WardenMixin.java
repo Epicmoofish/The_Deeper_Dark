@@ -2,6 +2,7 @@ package oceanicvoid.thedeeperdark.mixin;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Unit;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.monster.warden.Warden;
@@ -21,6 +22,8 @@ public class WardenMixin {
     private void makeWardenInvestigateSonicBomb(ServerLevel p_219362_, GameEventListener p_219363_, BlockPos p_219364_, GameEvent p_219365_, Entity p_219366_, Entity p_219367_, float p_219368_, CallbackInfo ci){
         Warden warden = (Warden)(Object)this;
         if (p_219365_ == ModVibrations.sonicBombVibration.get()) {
+            warden.getBrain().setMemoryWithExpiry(MemoryModuleType.VIBRATION_COOLDOWN, Unit.INSTANCE, 400L);
+            warden.getBrain().setMemoryWithExpiry(MemoryModuleType.SNIFF_COOLDOWN, Unit.INSTANCE, 400L);
             if (p_219366_ != null) {
                 BlockPos blockpos = p_219366_.blockPosition();
                 WardenAi.setDisturbanceLocation(warden, blockpos);
