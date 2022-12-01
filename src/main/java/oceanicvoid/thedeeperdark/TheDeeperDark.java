@@ -15,6 +15,8 @@ import oceanicvoid.thedeeperdark.systems.quests.QuestHandler;
 import oceanicvoid.thedeeperdark.vibrations.ModVibrations;
 import org.slf4j.Logger;
 
+import java.beans.EventHandler;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TheDeeperDark.MODID)
 public class TheDeeperDark {
@@ -32,6 +34,7 @@ public class TheDeeperDark {
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(QuestHandler.class);
         MinecraftForge.EVENT_BUS.register(ModRegistry.ClientRegistry.class);
+        MinecraftForge.EVENT_BUS.register(EventHandler.class);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
