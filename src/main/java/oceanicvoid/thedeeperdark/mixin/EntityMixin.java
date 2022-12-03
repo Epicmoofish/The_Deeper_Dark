@@ -13,11 +13,19 @@ public class EntityMixin implements IEntityMixin {
     public boolean inDeeperDarkPortal = false;
     public float deeperDarkPortalTime = 0.0f;
     public float odeeperDarkPortalTime = 0.0f;
+    public boolean scheduledForExecution = false;
     @Override
     public void setInDeeperDarkPortal(boolean inPortal) {
         inDeeperDarkPortal = inPortal;
     }
-
+    @Override
+    public void setScheduledForExecution(boolean scheduledForExecution) {
+        this.scheduledForExecution = scheduledForExecution;
+    }
+    @Override
+    public boolean getScheduledForExecution() {
+        return scheduledForExecution;
+    }
     @Override
     public boolean getInDeeperDarkPortal() {
         return inDeeperDarkPortal;

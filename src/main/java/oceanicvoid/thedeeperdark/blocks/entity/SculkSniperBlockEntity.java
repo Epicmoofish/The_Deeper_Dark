@@ -26,6 +26,7 @@ import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.level.gameevent.vibrations.VibrationListener;
 import net.minecraft.world.phys.Vec3;
 import oceanicvoid.thedeeperdark.blocks.SculkSniperBlock;
+import oceanicvoid.thedeeperdark.mixininterfaces.IEntityMixin;
 import oceanicvoid.thedeeperdark.vibrations.ModVibrations;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,9 +40,16 @@ public class SculkSniperBlockEntity extends BlockEntity implements VibrationList
     private VibrationListener listener = new VibrationListener(new BlockPositionSource(this.worldPosition), 32, this, (VibrationListener.ReceivingEvent)null, 128.0f, 5);
 
     @Override
+    public void onSignalSchedule() {
+        ((IEntityMixin)this.listener.receivingEvent.entity()).setScheduledForExecution(true);
+    }
+
+    @Override
     public boolean shouldListen(ServerLevel p_223872_, GameEventListener p_223873_, BlockPos p_223874_, GameEvent event, GameEvent.Context p_223876_) {
+        if (!(p_223872_.getBlockState(this.getBlockPos()).getBlock() instanceof SculkSniperBlock)) return false;
         if (!SculkSniperBlock.canActivate(p_223872_.getBlockState(this.getBlockPos()))) return false;
         if (p_223876_.sourceEntity()==null) return false;
+        if (((IEntityMixin)p_223876_.sourceEntity()).getScheduledForExecution()) return false;
         if (!p_223876_.sourceEntity().isAttackable()) return false;
         if (p_223876_.sourceEntity() instanceof LivingEntity ent) {
             if (ent.isDeadOrDying()) return false;
@@ -80,7 +88,7 @@ public class SculkSniperBlockEntity extends BlockEntity implements VibrationList
             Vec3 vec31 = new Vec3(this.getBlockPos().getX(),this.getBlockPos().getY(),this.getBlockPos().getZ()).subtract(vec3);
             Vec3 vec32 = vec31.normalize();
 
-            for(int i = 1; i < Mth.floor(vec31.length()) + 7; ++i) {
+            for(int i = 1; i < Mth.floor(vec31.length()); ++i) {
                 Vec3 vec33 = vec3.add(vec32.scale((double)i));
                 if (level instanceof ServerLevel sl) {
                     sl.sendParticles(ParticleTypes.SONIC_BOOM, vec33.x, vec33.y, vec33.z, 1, 0.0D, 0.0D, 0.0D, 0.0D);
@@ -93,6 +101,7 @@ public class SculkSniperBlockEntity extends BlockEntity implements VibrationList
                     SculkSniperBlock.activate(sl, this.getBlockPos(), sl.getBlockState(this.getBlockPos()));
                 }
             }
+            ((IEntityMixin)entity).setScheduledForExecution(false);
         }
     }
 
