@@ -14,7 +14,7 @@ public class EventHandler {
     public static void sendSniperTrigger(LivingEvent.LivingTickEvent event) {
         Level level = event.getEntity().getLevel();
         BlockPos blockpos = event.getEntity().getOnPos();
-        if (level.getGameTime() % 300 == 0) {
+        if (level.getGameTime() % 5 == 0) {
             level.gameEvent(ModVibrations.sniperVibration.get(), blockpos, GameEvent.Context.of(event.getEntity(), level.getBlockState(blockpos)));
         }
     }
